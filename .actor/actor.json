@@ -1,0 +1,24 @@
+{
+  "actorSpecification": 1,
+  "name": "jackroad-used-watch-scraper",
+  "version": "0.0.1",
+  "buildTag": "latest",
+  "input": "./INPUT_SCHEMA.json",
+  "dockerfile": "./Dockerfile",
+  "outputSchema": {
+    "actorSpecification": 1,
+    "outputSchemaVersion": 1,
+    "properties": {
+      "productId": { "type": "string", "template": "{{productId}}" },
+      "title": { "type": "string", "template": "{{title}}" },
+      "price": { "type": "string", "template": "{{price}}" },
+      "brand": { "type": "string", "template": "{{brand}}" },
+      "condition": { "type": "string", "template": "{{condition}}" },
+      "stockStatus": { "type": "string", "template": "{{stockStatus}}" },
+      "productUrl": { "type": "string", "template": "{{productUrl}}" },
+      "imageUrl": { "type": "string", "template": "{{imageUrl}}" },
+      "scrapedAt": { "type": "string", "template": "{{scrapedAt}}" }
+    },
+    "required": ["productId", "title"]
+  }
+}
