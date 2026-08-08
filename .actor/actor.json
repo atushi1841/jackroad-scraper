@@ -6,18 +6,65 @@
   "input": "./INPUT_SCHEMA.json",
   "dockerfile": "./Dockerfile",
   "outputSchema": {
-    "actorSpecification": 1,
-    "outputSchemaVersion": 1,
+    "actorOutputSchemaVersion": 1,
+    "title": "Jackroad Scraper Output",
+    "description": "Scraped product data from Jackroad (jackroad.co.jp)",
+    "type": "object",
     "properties": {
-      "productId": { "type": "string", "template": "{{productId}}" },
-      "title": { "type": "string", "template": "{{title}}" },
-      "price": { "type": "string", "template": "{{price}}" },
-      "brand": { "type": "string", "template": "{{brand}}" },
-      "condition": { "type": "string", "template": "{{condition}}" },
-      "stockStatus": { "type": "string", "template": "{{stockStatus}}" },
-      "productUrl": { "type": "string", "template": "{{productUrl}}" },
-      "imageUrl": { "type": "string", "template": "{{imageUrl}}" },
-      "scrapedAt": { "type": "string", "template": "{{scrapedAt}}" }
+      "productId": {
+        "title": "Product ID",
+        "type": "string",
+        "description": "Product ID",
+        "template": "{{productId}}"
+      },
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "description": "Product title",
+        "template": "{{title}}"
+      },
+      "price": {
+        "title": "Price",
+        "type": "string",
+        "description": "Price in JPY",
+        "template": "{{price}}"
+      },
+      "brand": {
+        "title": "Brand",
+        "type": "string",
+        "description": "Watch brand",
+        "template": "{{brand}}"
+      },
+      "condition": {
+        "title": "Condition",
+        "type": "string",
+        "description": "Product condition",
+        "template": "{{condition}}"
+      },
+      "stockStatus": {
+        "title": "Stock Status",
+        "type": "string",
+        "description": "Stock status",
+        "template": "{{stockStatus}}"
+      },
+      "productUrl": {
+        "title": "Product URL",
+        "type": "string",
+        "description": "Product URL",
+        "template": "{{productUrl}}"
+      },
+      "imageUrl": {
+        "title": "Image URL",
+        "type": "string",
+        "description": "Image URL",
+        "template": "{{imageUrl}}"
+      },
+      "scrapedAt": {
+        "title": "Scraped At",
+        "type": "string",
+        "description": "Scrape timestamp",
+        "template": "{{scrapedAt}}"
+      }
     },
     "required": ["productId", "title"]
   }
