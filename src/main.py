@@ -159,23 +159,21 @@ async def fetch_html(client: httpx.AsyncClient, url: str, retries: int = 3) -> s
 
 
 async def get_actor_input():
-    if Actor and getattr(Actor, "is_at_home", False):
-        actor_input = await Actor.get_input() or {}
-    else:
-        raw = sys.stdin.read()
-        actor_input = json.loads(raw) if raw.strip() else {}
-    return actor_input
+    if Actor is not None:
+        return await Actor.get_input() or {}
+    raw = sys.stdin.read()
+    return json.loads(raw) if raw.strip() else {}
 
 
 async def push_data(item: dict) -> None:
-    if Actor and getattr(Actor, "is_at_home", False):
+    if Actor is not None:
         await Actor.push_data(item)
     else:
         print(json.dumps(item, ensure_ascii=False))
 
 
 async def amain() -> None:
-    if Actor and getattr(Actor, "is_at_home", False):
+    if Actor is not None:
         await Actor.init()
 
     try:
@@ -190,10 +188,14 @@ async def amain() -> None:
         max_items = max(1, min(max_items, 500))
 
         proxy_url = None
-        if Actor and getattr(Actor, "is_at_home", False):
-            proxy_config = await Actor.create_proxy_configuration(actor_input=actor_input)
-            if proxy_config:
-                proxy_url = await proxy_config.new_url()
+        if Actor is not None:
+            proxy_input = actor_input.get("proxyConfiguration")
+            if proxy_input:
+                proxy_config = await Actor.create_proxy_configuration(
+                    actor_proxy_input=proxy_input
+                )
+                if proxy_config:
+                    proxy_url = await proxy_config.new_url()
 
         async with httpx.AsyncClient(
             timeout=30,
@@ -225,7 +227,7 @@ async def amain() -> None:
                 await asyncio.sleep(random.uniform(1.0, 3.0))
 
     finally:
-        if Actor and getattr(Actor, "is_at_home", False):
+        if Actor is not None:
             await Actor.exit()
 
 
