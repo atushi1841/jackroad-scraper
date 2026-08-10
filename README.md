@@ -2,6 +2,8 @@
 
 **Scrape pre-owned Rolex, Omega, Cartier and more from one of Japan's largest watch dealers – Jackroad. Ideal for price monitoring, reseller arbitrage, and market research.**
 
+> 💡 **For cross-shop comparison**, use the [Japan Watch Market Scraper](https://apify.com/fruitful_quintessence/japan-watch-market-scraper) — it compares Jackroad against Kitamura used watches in a single dataset.
+
 ## Output Sample
 
     {"productId": "ABC123", "title": "Rolex Submariner", "price": "1,234,000", "brand": null, "condition": "中古", "stockStatus": "在庫あり", "productUrl": "https://www.jackroad.co.jp/shop/g/gABC123/", "imageUrl": "https://example.com/img.jpg", "scrapedAt": "2024-05-01T12:00:00.000Z"}
